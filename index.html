@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfólio — Yasmim Pereira</title>
+<meta name="description" content="Yasmim Pereira, desenvolvedora de software em São Paulo. Estagiária na Wae Tecnologia e estudante de Engenharia de Software.">
+<meta property="og:title" content="Yasmim Pereira · Desenvolvedora de Software">
+<meta property="og:description" content="Estagiária Dev na Wae Tecnologia · Engenharia de Software · Java, C#, Python, Flutter, GeneXus.">
+<meta property="og:image" content="foto.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%239b5cff'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3EYP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Silkscreen&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d0716;
+    --bg2:#150c24;
+    --card:#1b1030;
+    --line:#2e1d4d;
+    --text:#efe8ff;
+    --muted:#a99cc7;
+    --purple:#9b5cff;
+    --violet:#c49bff;
+    --pink:#ff5ccf;
+    --glow:0 0 40px rgba(155,92,255,.35);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Space Grotesk',system-ui,sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;
+  }
+  body::before{ /* grid de fundo */
+    content:"";position:fixed;inset:0;z-index:-2;
+    background-image:linear-gradient(rgba(155,92,255,.06) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(155,92,255,.06) 1px,transparent 1px);
+    background-size:48px 48px;
+    mask-image:radial-gradient(ellipse at top,#000 30%,transparent 75%);
+  }
+  .glow-cursor{
+    position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:-1;
+    background:radial-gradient(circle,rgba(155,92,255,.18),transparent 65%);
+    transform:translate(-50%,-50%);transition:opacity .3s;
+  }
+  .pixel{font-family:'Silkscreen',monospace;letter-spacing:.04em}
+  a{color:inherit}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    backdrop-filter:blur(12px);background:rgba(13,7,22,.7);border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-size:15px;color:var(--violet);text-decoration:none}
+  .logo span{color:var(--pink)}
+  nav ul{display:flex;gap:28px;list-style:none}
+  nav ul a{text-decoration:none;color:var(--muted);font-size:14px;transition:color .2s}
+  nav ul a:hover{color:var(--text)}
+  .menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:6px 10px;cursor:pointer}
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;align-items:center;padding-top:64px;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:center}
+  .tag{
+    display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--violet);
+    border:1px solid var(--line);background:var(--bg2);padding:6px 14px;border-radius:999px;margin-bottom:24px;
+  }
+  .tag .dot{width:8px;height:8px;border-radius:50%;background:#4dffa0;box-shadow:0 0 10px #4dffa0;animation:pulse 2s infinite}
+  @keyframes pulse{50%{opacity:.4}}
+  h1{font-size:clamp(40px,6.5vw,76px);line-height:1.02;font-weight:700;letter-spacing:-.03em}
+  h1 .grad{
+    background:linear-gradient(90deg,var(--violet),var(--purple) 40%,var(--pink));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .typed{font-size:clamp(17px,2vw,21px);color:var(--muted);margin:22px 0 34px;min-height:1.6em}
+  .typed b{color:var(--text);font-weight:500}
+  .caret{display:inline-block;width:2px;height:1.1em;background:var(--pink);vertical-align:-3px;margin-left:3px;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .btns{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{
+    text-decoration:none;padding:14px 26px;border-radius:12px;font-weight:600;font-size:15px;
+    transition:transform .2s,box-shadow .2s,background .2s;display:inline-flex;gap:8px;align-items:center
+  }
+  .btn-primary{background:linear-gradient(135deg,var(--purple),#7a3dff);color:#fff;box-shadow:var(--glow)}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 0 60px rgba(155,92,255,.55)}
+  .btn-ghost{border:1px solid var(--line);color:var(--text);background:var(--bg2)}
+  .btn-ghost:hover{border-color:var(--purple);transform:translateY(-3px)}
+
+  /* Player card */
+  .player{
+    background:linear-gradient(160deg,#21143a,#140b24);border:1px solid var(--line);border-radius:22px;
+    padding:28px;box-shadow:var(--glow);position:relative;animation:float 6s ease-in-out infinite;
+  }
+  @keyframes float{50%{transform:translateY(-12px)}}
+  .player::after{
+    content:"";position:absolute;inset:-1px;border-radius:22px;padding:1px;pointer-events:none;
+    background:linear-gradient(135deg,var(--purple),transparent 40%,var(--pink));
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;
+  }
+  .player-top{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+  .avatar{
+    width:88px;height:88px;border-radius:18px;object-fit:cover;flex-shrink:0;
+    border:3px solid transparent;
+    background:linear-gradient(var(--bg),var(--bg)) padding-box,linear-gradient(135deg,var(--purple),var(--pink)) border-box;
+    box-shadow:0 0 24px rgba(155,92,255,.45);
+  }
+  .player small{color:var(--muted);font-size:11px}
+  .player h3{font-size:19px}
+  .lvl{font-size:11px;color:var(--pink)}
+  .stat{margin-bottom:14px}
+  .stat-row{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:6px}
+  .bar{height:10px;background:#0d0716;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+  .bar i{
+    display:block;height:100%;width:0;border-radius:6px;
+    background:repeating-linear-gradient(90deg,var(--purple) 0 10px,var(--violet) 10px 12px);
+    transition:width 1.6s cubic-bezier(.2,.8,.2,1);
+  }
+  .xp{margin-top:20px;padding-top:16px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted);display:flex;justify-content:space-between}
+  .xp b{color:#4dffa0;font-weight:400}
+
+  .scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--muted);animation:bob 2s infinite}
+  @keyframes bob{50%{transform:translate(-50%,6px)}}
+
+  /* SECTIONS */
+  section{padding:110px 0}
+  .sec-label{font-size:12px;color:var(--pink);margin-bottom:12px;display:block}
+  h2{font-size:clamp(32px,4.5vw,48px);letter-spacing:-.02em;line-height:1.1;margin-bottom:20px}
+  .lead{color:var(--muted);max-width:620px;font-size:17px}
+
+  /* SOBRE */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:48px}
+  .about-text p{color:var(--muted);margin-bottom:18px;font-size:16.5px}
+  .about-text p strong{color:var(--text);font-weight:600}
+  .traits{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .trait{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;
+    transition:transform .25s,border-color .25s;
+  }
+  .trait:hover{transform:translateY(-4px);border-color:var(--purple)}
+  .trait .ico{font-size:26px;margin-bottom:10px}
+  .trait h4{font-size:16px;margin-bottom:4px}
+  .trait p{font-size:14px;color:var(--muted)}
+
+  /* SKILLS */
+  .skills{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .inventory{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-top:44px}
+  .slot{
+    aspect-ratio:1.4;background:var(--card);border:1px solid var(--line);border-radius:14px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+    transition:all .25s;cursor:default;position:relative;
+  }
+  .slot:hover{border-color:var(--purple);box-shadow:var(--glow);transform:scale(1.04)}
+  .slot .s-ico{font-size:13px;color:var(--violet);border:1px solid var(--line);padding:4px 8px;border-radius:6px;background:var(--bg)}
+  .slot span{font-weight:600;font-size:15px}
+
+  /* TRAJETÓRIA */
+  .timeline{position:relative;margin-top:56px;padding-left:40px}
+  .timeline::before{
+    content:"";position:absolute;left:11px;top:6px;bottom:6px;width:2px;
+    background:linear-gradient(var(--purple),var(--pink),transparent);
+  }
+  .phase{position:relative;margin-bottom:34px}
+  .phase::before{
+    content:"";position:absolute;left:-36px;top:22px;width:16px;height:16px;border-radius:4px;
+    background:var(--bg);border:2px solid var(--purple);transform:rotate(45deg);
+  }
+  .phase.now::before{background:var(--pink);border-color:var(--pink);box-shadow:0 0 18px var(--pink)}
+  .phase.next::before{border-style:dashed;border-color:var(--muted)}
+  .phase-card{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 28px;
+    transition:border-color .25s,transform .25s;
+  }
+  .phase-card:hover{border-color:var(--purple);transform:translateX(6px)}
+  .phase-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+  .phase-num{font-size:12px;color:var(--violet)}
+  .badge{font-size:10px;padding:4px 10px;border-radius:999px;background:rgba(255,92,207,.12);color:var(--pink);border:1px solid rgba(255,92,207,.3)}
+  .badge.done{background:rgba(77,255,160,.08);color:#4dffa0;border-color:rgba(77,255,160,.3)}
+  .phase h3{font-size:21px;margin-bottom:6px}
+  .phase p{color:var(--muted);font-size:15.5px}
+
+  /* PROJETOS */
+  .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px}
+  .project{
+    background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;
+    display:flex;flex-direction:column;transition:transform .3s,border-color .3s,box-shadow .3s;
+  }
+  .project:hover{transform:translateY(-8px);border-color:var(--purple);box-shadow:var(--glow)}
+  .thumb{height:170px;position:relative;overflow:hidden;display:grid;place-items:center}
+  .thumb svg{width:100%;height:100%;position:absolute;inset:0}
+  .thumb .pixel{position:relative;font-size:13px;color:#fff;background:rgba(13,7,22,.55);padding:6px 12px;border-radius:8px;backdrop-filter:blur(4px)}
+  .p-body{padding:24px;flex:1;display:flex;flex-direction:column}
+  .p-body h3{font-size:19px;margin-bottom:8px}
+  .p-body p{color:var(--muted);font-size:14.5px;flex:1}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+  .chip{font-size:12px;padding:4px 10px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--violet)}
+  .p-links{display:flex;gap:18px;font-size:14px}
+  .p-links a{text-decoration:none;color:var(--text);border-bottom:1px solid var(--purple);padding-bottom:2px}
+  .p-links a:hover{color:var(--violet)}
+
+  /* CONTATO */
+  .contact-box{
+    margin-top:20px;background:linear-gradient(135deg,#2a1450,#1a0d33 60%,#2d0f3a);
+    border:1px solid var(--line);border-radius:28px;padding:64px 48px;text-align:center;position:relative;overflow:hidden;
+  }
+  .contact-box::before{
+    content:"";position:absolute;width:500px;height:500px;border-radius:50%;top:-250px;left:50%;transform:translateX(-50%);
+    background:radial-gradient(circle,rgba(255,92,207,.25),transparent 65%);
+  }
+  .contact-box > *{position:relative}
+  .contact-box .lead{margin:0 auto 34px}
+  .contacts{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+  .contact-email{margin-top:22px;color:var(--muted);font-size:14px}
+  .copied{color:#4dffa0;margin-left:8px;opacity:0;transition:opacity .3s}
+
+  .inv-title{font-size:13px;color:var(--violet);margin:40px 0 0;font-weight:400}
+  .inventory{margin-top:16px!important}
+  .slot.legendary{border-color:var(--pink);box-shadow:0 0 24px rgba(255,92,207,.25)}
+  .slot .leg{position:absolute;top:8px;right:8px;font-size:9px;color:var(--pink)}
+  .chips.big{margin-top:16px}
+  .chips.big .chip{font-size:14px;padding:8px 14px}
+  .phase-card.boss{border-color:var(--pink);background:linear-gradient(135deg,#2a1240,var(--card));box-shadow:0 0 40px rgba(255,92,207,.18)}
+  .project.featured{border-color:rgba(255,92,207,.5)}
+  .repos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+  .repo{text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;display:flex;flex-direction:column;transition:transform .25s,border-color .25s}
+  .repo:hover{transform:translateY(-4px);border-color:var(--purple)}
+  .repo-head{display:flex;justify-content:space-between;color:var(--violet);font-size:13px;margin-bottom:8px;gap:8px}
+  .repo-head .pixel{word-break:break-all}
+  .repo .arrow{color:var(--pink);transition:transform .2s}
+  .repo:hover .arrow{transform:translate(3px,-3px)}
+  .repo p{color:var(--muted);font-size:14px;flex:1}
+  .repo .chips{margin:14px 0 0}
+  @media (max-width:900px){.repos{grid-template-columns:1fr}}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .st{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+  .st b{font-size:22px;line-height:1.2;background:linear-gradient(90deg,var(--violet),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .st span{font-size:12.5px;color:var(--muted);line-height:1.35}
+  .nav-right{display:flex;align-items:center;gap:22px}
+  .lang{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .lang button{background:none;border:0;color:var(--muted);font:inherit;font-size:11px;padding:6px 9px;cursor:pointer}
+  .lang button.on{background:var(--purple);color:#fff}
+  .repo.shot img{width:calc(100% + 40px);margin:-20px -20px 16px;height:150px;object-fit:cover;object-position:top;border-radius:16px 16px 0 0;border-bottom:1px solid var(--line);display:block}
+  .about-text strong,.phase p strong,.p-body p strong{color:var(--text)}
+  footer{padding:40px 0;text-align:center;color:var(--muted);font-size:12px;border-top:1px solid var(--line)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (max-width:900px){
+    .hero-grid,.about-grid{grid-template-columns:1fr}
+    .projects{grid-template-columns:1fr}
+    .player{max-width:420px}
+    nav ul{
+      display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;
+      background:var(--bg2);border-bottom:1px solid var(--line)
+    }
+    nav ul.open{display:flex}
+    nav ul li a{display:block;padding:16px 24px}
+    .menu-btn{display:block}
+  }
+  @media (max-width:900px){.hero{min-height:auto;padding:110px 0 70px}.scroll-hint{display:none}}
+  @media (max-width:520px){
+    .traits{grid-template-columns:1fr}
+    .contact-box{padding:48px 24px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+<div class="glow-cursor" id="glow"></div>
+
+<nav>
+  <div class="wrap">
+    <a href="#inicio" class="logo pixel">&lt;yasmim<span>.dev</span>/&gt;</a>
+    <div class="nav-right">
+      <ul id="menu">
+        <li><a href="#sobre" data-i18n="nav1">Sobre</a></li>
+        <li><a href="#skills" data-i18n="nav2">Skills</a></li>
+        <li><a href="#trajetoria" data-i18n="nav3">Trajetória</a></li>
+        <li><a href="#projetos" data-i18n="nav4">Projetos</a></li>
+        <li><a href="#contato" data-i18n="nav5">Contato</a></li>
+      </ul>
+      <div class="lang pixel" role="group" aria-label="Idioma / Language">
+        <button data-lang="pt" class="on">PT</button><button data-lang="en">EN</button>
+      </div>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="inicio">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="tag pixel"><span class="dot"></span> <span data-i18n="tag">Estagiária Dev @ Wae Tecnologia</span></div>
+      <h1><span data-i18n="hello">Olá, eu sou</span><br><span class="grad">Yasmim Pereira</span></h1>
+      <p class="typed"><b data-i18n="role">Desenvolvedora de Software · São Paulo</b><br><span id="typed"></span><span class="caret"></span></p>
+      <div class="btns">
+        <a href="#projetos" class="btn btn-primary" data-i18n="btnProj">▶ Ver projetos</a>
+        <a href="curriculo-yasmim-pereira.pdf" target="_blank" rel="noopener" class="btn btn-ghost" data-i18n="btnCv">📄 Currículo</a>
+        <a href="https://github.com/Yassm1m" target="_blank" rel="noopener" class="btn btn-ghost">⌘ GitHub</a>
+      </div>
+    </div>
+
+    <aside class="player" aria-label="Player card">
+      <div class="player-top">
+        <img class="avatar" src="foto.jpg" alt="Yasmim Pereira" width="88" height="88">
+        <div>
+          <small class="pixel">PLAYER 1</small>
+          <h3>Yasmim Pereira</h3>
+          <div class="lvl pixel" data-i18n="lvl">LV. 20 · Dev em evolução</div>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="st"><b>🏆</b><span data-i18n="st1">Projeto premiado em 2024</span></div>
+        <div class="st"><b>3</b><span data-i18n="st2">Formações em tecnologia</span></div>
+        <div class="st"><b>9+</b><span data-i18n="st3">Linguagens de programação</span></div>
+        <div class="st"><b>3</b><span data-i18n="st4">Idiomas: PT · EN · ES</span></div>
+      </div>
+      <div class="xp pixel"><span data-i18n="guild">Guilda atual:</span><b>Wae Tecnologia ▲</b></div>
+    </aside>
+  </div>
+  <div class="scroll-hint pixel">▼ press start</div>
+</header>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="wrap">
+    <span class="sec-label pixel" data-i18n="s1">// 01 — sobre mim</span>
+    <h2 class="reveal" data-i18n="aboutH">Movida por desafios,<br>focada em evoluir.</h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p data-i18n="ab1">Tenho 20 anos e sou uma pessoa <strong>determinada, dedicada e movida por desafios</strong>. Sempre gostei de sair da zona de conforto e encarar situações que me façam evoluir, tanto no pessoal quanto no profissional.</p>
+        <p data-i18n="ab2">Quando assumo algo, faço questão de <strong>levar até o fim com qualidade</strong>. Tenho senso de responsabilidade, sou organizada, proativa e aprendo novas tecnologias com facilidade.</p>
+        <p data-i18n="ab3">Sou técnica em Desenvolvimento de Sistemas pela <strong>ETEC</strong>, tecnóloga em Linux pela <strong>FATEC Osasco</strong> e hoje curso <strong>Engenharia de Software na São Judas</strong>. Atualmente sou <strong>estagiária desenvolvedora na Wae Tecnologia</strong>, onde desenvolvo e mantenho sistemas em GeneXus.</p>
+        <p data-i18n="ab4">Desde sempre gosto de <strong>video games</strong> 🎮. Foi aí que nasceu minha curiosidade por entender como as coisas funcionam por trás da tela.</p>
+      </div>
+      <div class="traits">
+        <div class="trait reveal"><div class="ico">🎯</div><h4 data-i18n="t1h">Determinada</h4><p data-i18n="t1p">Encaro dificuldades como fase a ser vencida.</p></div>
+        <div class="trait reveal"><div class="ico">⚡</div><h4 data-i18n="t2h">Proativa</h4><p data-i18n="t2p">Tomo iniciativa e não espero o problema crescer.</p></div>
+        <div class="trait reveal"><div class="ico">🧩</div><h4 data-i18n="t3h">Organizada</h4><p data-i18n="t3p">Planejo, priorizo e entrego no prazo.</p></div>
+        <div class="trait reveal"><div class="ico">🤝</div><h4 data-i18n="t4h">Colaborativa</h4><p data-i18n="t4p">Gosto de aprender e ensinar em equipe.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills">
+  <div class="wrap">
+    <span class="sec-label pixel" data-i18n="s2">// 02 — inventário</span>
+    <h2 class="reveal" data-i18n="skH">Ferramentas que já coletei</h2>
+    <p class="lead reveal" data-i18n="skP">Tecnologias que uso no estágio, na faculdade e nos meus projetos. O inventário continua crescendo.</p>
+
+    <h3 class="inv-title pixel reveal" data-i18n="inv1">▸ Linguagens</h3>
+    <div class="inventory">
+      <div class="slot reveal"><div class="s-ico pixel">☕</div><span>Java</span></div>
+      <div class="slot reveal"><div class="s-ico pixel">C#</div><span>C#</span></div>
+      <div class="slot reveal"><div class="s-ico pixel">PY</div><span>Python</span></div>
+      <div class="slot reveal"><div class="s-ico pixel">JS</div><span>JavaScript</span></div>
+      <div class="slot reveal"><div class="s-ico pixel">TS</div><span>TypeScript</span></div>
+      <div class="slot reveal"><div class="s-ico pixel">KT</div><span>Kotlin</span></div>
+      <div class="slot reveal"><div class="s-ico pixel">C</div><span>C</span></div>
+      <div class="slot reveal"><div class="s-ico pixel">C++</div><span>C++</span></div>
+      <div class="slot reveal"><div class="s-ico pixel">PHP</div><span>PHP</span></div>
+      <div class="slot reveal"><div class="s-ico pixel">&lt;/&gt;</div><span>HTML & CSS</span></div>
+      <div class="slot reveal"><div class="s-ico pixel">DB</div><span>SQL</span></div>
+    </div>
+
+    <h3 class="inv-title pixel reveal" data-i18n="inv2">▸ Frameworks & plataformas</h3>
+    <div class="inventory">
+      <div class="slot reveal legendary"><div class="leg pixel" data-i18n="leg">no estágio</div><div class="s-ico pixel">GX</div><span>GeneXus 18</span></div>
+      <div class="slot reveal"><div class="s-ico pixel">🍃</div><span>Spring Boot</span></div>
+      <div class="slot reveal"><div class="s-ico pixel">.NET</div><span>ASP.NET Core</span></div>
+      <div class="slot reveal"><div class="s-ico pixel">◆</div><span>Flutter</span></div>
+      <div class="slot reveal"><div class="s-ico pixel">API</div><span>REST APIs</span></div>
+      <div class="slot reveal"><div class="s-ico pixel">🔥</div><span>Firebase</span></div>
+      <div class="slot reveal"><div class="s-ico pixel">FL</div><span>Flask</span></div>
+      <div class="slot reveal"><div class="s-ico pixel">B</div><span>Bootstrap</span></div>
+      <div class="slot reveal"><div class="s-ico pixel">DB</div><span>MySQL</span></div>
+      <div class="slot reveal"><div class="s-ico pixel">🐧</div><span>Linux</span></div>
+    </div>
+
+    <h3 class="inv-title pixel reveal" data-i18n="inv3">▸ Ferramentas & conceitos</h3>
+    <div class="chips big reveal">
+      <span class="chip">Git / GitHub</span><span class="chip">VS Code</span><span class="chip">Android Studio</span><span class="chip">JPA / Hibernate</span><span class="chip">Chart.js</span><span class="chip">Visual Studio</span><span class="chip">IntelliJ IDEA</span>
+      <span class="chip" data-i18n="c1">POO</span><span class="chip" data-i18n="c2">Arquitetura de Software</span><span class="chip" data-i18n="c3">Integração de APIs</span>
+    </div>
+  </div>
+</section>
+
+<!-- TRAJETÓRIA -->
+<section id="trajetoria">
+  <div class="wrap">
+    <span class="sec-label pixel" data-i18n="s3">// 03 — mapa de fases</span>
+    <h2 class="reveal" data-i18n="trH">Minha caminhada até aqui</h2>
+    <p class="lead reveal" data-i18n="trP">Cada etapa foi uma fase desbloqueada.</p>
+
+    <div class="timeline">
+      <div class="phase reveal">
+        <div class="phase-card">
+          <div class="phase-head"><span class="phase-num pixel" data-i18n="f1n">FASE 01 · tutorial</span><span class="badge done pixel" data-i18n="done">concluída</span></div>
+          <h3 data-i18n="f1h">Player desde sempre 🎮</h3>
+          <p data-i18n="f1p">Os video games despertaram minha curiosidade: como um jogo é criado? Como tudo aquilo funciona por trás da tela? Foi o primeiro passo rumo à tecnologia.</p>
+        </div>
+      </div>
+      <div class="phase reveal">
+        <div class="phase-card">
+          <div class="phase-head"><span class="phase-num pixel" data-i18n="f2n">FASE 02 · 2022–2024</span><span class="badge done pixel" data-i18n="done">concluída</span></div>
+          <h3 data-i18n="f2h">Técnico em Desenvolvimento de Sistemas</h3>
+          <p data-i18n="f2p"><strong>ETEC Prof. Basilides de Godoy</strong>: onde aprendi a programar de verdade, com lógica, banco de dados, desenvolvimento web e projetos em equipe. Foi aqui que nasceu o <strong>DevReads</strong>, premiado como melhor projeto acadêmico de 2024 🏆</p>
+        </div>
+      </div>
+      <div class="phase reveal">
+        <div class="phase-card">
+          <div class="phase-head"><span class="phase-num pixel" data-i18n="f3n">FASE 03 · 2024</span><span class="badge done pixel" data-i18n="done">concluída</span></div>
+          <h3 data-i18n="f3h">Tecnólogo em Linux</h3>
+          <p data-i18n="f3p"><strong>FATEC Osasco</strong>: base sólida em sistemas operacionais, terminal e infraestrutura. Em paralelo, a side quest de inglês na Wizard, hoje em nível fluente.</p>
+        </div>
+      </div>
+      <div class="phase reveal">
+        <div class="phase-card">
+          <div class="phase-head"><span class="phase-num pixel" data-i18n="f4n">FASE 04 · 2025–2028</span><span class="badge pixel" data-i18n="ongoing">em andamento</span></div>
+          <h3 data-i18n="f4h">Bacharelado em Engenharia de Software</h3>
+          <p data-i18n="f4p"><strong>Universidade São Judas Tadeu</strong>: aprofundando em arquitetura, qualidade e engenharia de software, evoluindo de quem programa para quem projeta soluções.</p>
+        </div>
+      </div>
+      <div class="phase now reveal">
+        <div class="phase-card boss">
+          <div class="phase-head"><span class="phase-num pixel" data-i18n="f5n">FASE 05 · jul/2026 → hoje</span><span class="badge pixel" data-i18n="current">★ fase atual</span></div>
+          <h3 data-i18n="f5h">Estagiária Desenvolvedora na Wae Tecnologia</h3>
+          <p data-i18n="f5p">Cheguei na Wae! Desenvolvo e mantenho sistemas com GeneXus, participo da migração de telas para o GeneXus 18, corrijo bugs, implemento melhorias e apoio a criação de novas funcionalidades e testes, sempre em equipe e com boas práticas.</p>
+        </div>
+      </div>
+      <div class="phase next reveal">
+        <div class="phase-card" style="border-style:dashed">
+          <div class="phase-head"><span class="phase-num pixel" data-i18n="f6n">FASE 06 · ???</span><span class="badge pixel" style="color:var(--muted);border-color:var(--line);background:none" data-i18n="loading">carregando…</span></div>
+          <h3 data-i18n="f6h">Próximo nível</h3>
+          <p data-i18n="f6p">Continuar evoluindo, encarar desafios maiores e entregar soluções cada vez melhores. Game on. 🎮</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETOS -->
+<section id="projetos" style="background:var(--bg2);border-top:1px solid var(--line)">
+  <div class="wrap">
+    <span class="sec-label pixel" data-i18n="s4">// 04 — missões concluídas</span>
+    <h2 class="reveal" data-i18n="prH">Projetos</h2>
+    <p class="lead reveal" data-i18n="prP">Alguns trabalhos que mostram como penso e construo.</p>
+
+    <div class="projects">
+      <article class="project reveal featured">
+        <div class="thumb">
+          <svg viewBox="0 0 300 170" preserveAspectRatio="none"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a3dff"/><stop offset="1" stop-color="#2a1450"/></linearGradient></defs><rect width="300" height="170" fill="url(#g1)"/><g fill="#c49bff" opacity=".45"><rect x="40" y="40" width="22" height="90" rx="3"/><rect x="68" y="50" width="18" height="80" rx="3"/><rect x="92" y="34" width="26" height="96" rx="3"/><rect x="124" y="56" width="16" height="74" rx="3" transform="rotate(-10 132 93)"/></g><rect x="30" y="130" width="240" height="6" rx="3" fill="#c49bff" opacity=".5"/><g fill="#fff" opacity=".18"><rect x="180" y="40" width="90" height="10" rx="3"/><rect x="180" y="58" width="70" height="8" rx="3"/><rect x="180" y="74" width="80" height="8" rx="3"/></g></svg>
+          <span class="pixel" data-i18n="award">🏆 PREMIADO</span>
+        </div>
+        <div class="p-body">
+          <h3 data-i18n="p1h">DevReads: Biblioteca Digital</h3>
+          <p data-i18n="p1p">Sistema completo de biblioteca digital, com APIs REST e banco de dados. Eleito o <strong>melhor projeto acadêmico de 2024</strong>.</p>
+          <div class="chips"><span class="chip">APIs REST</span><span class="chip" data-i18n="db">Banco de dados</span><span class="chip">Full stack</span></div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="thumb">
+          <svg viewBox="0 0 300 170" preserveAspectRatio="none"><defs><linearGradient id="g2" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#3a0f4a"/><stop offset="1" stop-color="#ff5ccf"/></linearGradient></defs><rect width="300" height="170" fill="url(#g2)"/><g fill="#fff" opacity=".22"><rect x="40" y="35" width="120" height="44" rx="12"/><rect x="140" y="92" width="120" height="44" rx="12"/></g><g fill="#fff" opacity=".4"><circle cx="58" cy="57" r="9"/><circle cx="242" cy="114" r="9"/></g></svg>
+          <span class="pixel">MOBILE</span>
+        </div>
+        <div class="p-body">
+          <h3 data-i18n="p2h">App de Histórias Colaborativas</h3>
+          <p data-i18n="p2p">Plataforma onde várias pessoas escrevem histórias juntas, com controle de autoria e edição restrita a quem criou cada história.</p>
+          <div class="chips"><span class="chip">Flutter</span><span class="chip">Mobile</span><span class="chip" data-i18n="acl">Controle de acesso</span></div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="thumb">
+          <svg viewBox="0 0 300 170" preserveAspectRatio="none"><defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1b1030"/><stop offset="1" stop-color="#9b5cff"/></linearGradient></defs><rect width="300" height="170" fill="url(#g3)"/><g fill="none" stroke="#c49bff" stroke-width="2" opacity=".5"><rect x="35" y="45" width="90" height="70" rx="8"/><rect x="175" y="45" width="90" height="70" rx="8"/></g><g stroke="#ff5ccf" stroke-width="3" opacity=".8"><line x1="135" y1="80" x2="162" y2="80"/><polyline points="155,72 164,80 155,88" fill="none"/></g></svg>
+          <span class="pixel">WAE · GX 18</span>
+        </div>
+        <div class="p-body">
+          <h3 data-i18n="p3h">Migração para GeneXus 18</h3>
+          <p data-i18n="p3p">No estágio na Wae Tecnologia: migração de telas para o GeneXus 18, correção de bugs e novas funcionalidades em sistemas que estão em produção.</p>
+          <div class="chips"><span class="chip">GeneXus</span><span class="chip">GeneXus 18</span><span class="chip" data-i18n="tests">Testes</span></div>
+        </div>
+      </article>
+    </div>
+
+    <h3 class="inv-title pixel reveal" style="margin-top:56px" data-i18n="gh">▸ Direto do GitHub</h3>
+    <div class="repos">
+      <a class="repo reveal" href="https://github.com/Yassm1m/f1-analytics" target="_blank" rel="noopener">
+        <div class="repo-head"><span class="pixel">f1-analytics</span><span class="arrow">↗</span></div>
+        <p data-i18n="r1">Dashboard da F1 2025/2026 com chatbot (Flask + Chart.js + Claude API) e data warehouse em esquema estrela: ETL em Python, testes de qualidade de dados e SQL analítico.</p>
+        <div class="chips"><span class="chip">Python</span><span class="chip">Flask</span><span class="chip">Chart.js</span><span class="chip">SQL</span></div>
+      </a>
+      <a class="repo reveal" href="https://github.com/Yassm1m/hotel-api" target="_blank" rel="noopener">
+        <div class="repo-head"><span class="pixel">hotel-api</span><span class="arrow">↗</span></div>
+        <p data-i18n="r2">API REST para gestão de hotel, com CRUD de clientes, quartos e reservas e integração com MySQL via JPA/Hibernate.</p>
+        <div class="chips"><span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">MySQL</span></div>
+      </a>
+      <a class="repo reveal" href="https://github.com/Yassm1m/transacoes-async-api" target="_blank" rel="noopener">
+        <div class="repo-head"><span class="pixel">transacoes-async-api</span><span class="arrow">↗</span></div>
+        <p data-i18n="r3">API de transações com processamento assíncrono.</p>
+        <div class="chips"><span class="chip">Python</span><span class="chip">API</span></div>
+      </a>
+      <a class="repo shot reveal" href="https://github.com/Yassm1m/NEXO-Pet" target="_blank" rel="noopener">
+        <img src="nexo.jpg" alt="NEXO Pet">
+        <div class="repo-head"><span class="pixel">NEXO-Pet</span><span class="arrow">↗</span></div>
+        <p data-i18n="r4">Landing page do NEXO Pet, projeto acadêmico de automação e alimentação inteligente para pets.</p>
+        <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span></div>
+      </a>
+      <a class="repo shot reveal" href="https://github.com/Yassm1m/food-landing-page" target="_blank" rel="noopener">
+        <img src="food.jpg" alt="Food landing page">
+        <div class="repo-head"><span class="pixel">food-landing-page</span><span class="arrow">↗</span></div>
+        <p data-i18n="r6">Landing page responsiva de restaurante.</p>
+        <div class="chips"><span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">JavaScript</span></div>
+      </a>
+      <a class="repo reveal" href="https://github.com/Yassm1m/Aplicativo-de-Tarefas-" target="_blank" rel="noopener">
+        <div class="repo-head"><span class="pixel">Aplicativo-de-Tarefas</span><span class="arrow">↗</span></div>
+        <p data-i18n="r5">App de tarefas com interface de terminal: adicionar, listar, editar, concluir e remover tarefas de forma simples e rápida.</p>
+        <div class="chips"><span class="chip">C / C++</span><span class="chip">Terminal</span></div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:36px" class="reveal"><a class="btn btn-ghost" href="https://github.com/Yassm1m" target="_blank" rel="noopener" data-i18n="allGh">Ver todos no GitHub ↗</a></div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="wrap">
+    <div class="contact-box reveal">
+      <span class="sec-label pixel" data-i18n="s5">// 05 — player 2?</span>
+      <h2 data-i18n="ctH">Bora jogar no mesmo time?</h2>
+      <p class="lead" data-i18n="ctP">Quer trocar uma ideia sobre tecnologia, projetos ou oportunidades? Me chama!</p>
+      <div class="contacts">
+        <a class="btn btn-primary" href="https://www.linkedin.com/in/yasmim-pereira-cossta" target="_blank" rel="noopener">in · LinkedIn</a>
+        <a class="btn btn-ghost" href="https://github.com/Yassm1m" target="_blank" rel="noopener">⌘ GitHub</a>
+        <a class="btn btn-ghost" href="curriculo-yasmim-pereira.pdf" target="_blank" rel="noopener" data-i18n="btnCv">📄 Currículo</a>
+        <button class="btn btn-ghost" id="copyEmail" style="cursor:pointer;font-family:inherit" data-i18n="copyBtn">✉ Copiar e-mail</button>
+      </div>
+      <p class="contact-email"><span id="email">yasmimpereira.dev@gmail.com</span><span class="copied" id="copied" data-i18n="copied">copiado!</span><br>linkedin.com/in/yasmim-pereira-cossta · github.com/Yassm1m</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap pixel" data-i18n="foot">feito com 💜 por Yasmim Pereira · © 2026 · GAME SAVED</div>
+</footer>
+
+<script>
+  const EN = {
+    nav1:"About",nav2:"Skills",nav3:"Journey",nav4:"Projects",nav5:"Contact",
+    tag:"Dev Intern @ Wae Tecnologia",hello:"Hi, I'm",role:"Software Developer · São Paulo, Brazil",
+    btnProj:"▶ See projects",btnCv:"📄 Resume",lvl:"LV. 20 · Dev leveling up",
+    st1:"Award-winning project (2024)",st2:"Tech degrees & programs",st3:"Programming languages",st4:"Languages: PT · EN · ES",guild:"Current guild:",
+    s1:"// 01 — about me",aboutH:"Driven by challenges,<br>focused on growth.",
+    ab1:"I'm 20 years old, <strong>determined, dedicated and driven by challenges</strong>. I've always liked stepping out of my comfort zone and taking on situations that make me grow, both personally and professionally.",
+    ab2:"When I take something on, I make sure to <strong>see it through with quality</strong>. I'm responsible, organized, proactive, and I pick up new technologies quickly.",
+    ab3:"I'm a Systems Development technician from <strong>ETEC</strong>, a Linux technologist from <strong>FATEC Osasco</strong>, and I'm currently studying <strong>Software Engineering at São Judas University</strong>. I work as a <strong>developer intern at Wae Tecnologia</strong>, building and maintaining systems in GeneXus.",
+    ab4:"I've always loved <strong>video games</strong> 🎮. That's where my curiosity about how things work behind the screen began.",
+    t1h:"Determined",t1p:"I treat obstacles as levels to beat.",t2h:"Proactive",t2p:"I take initiative instead of waiting for problems to grow.",
+    t3h:"Organized",t3p:"I plan, prioritize and deliver on time.",t4h:"Collaborative",t4p:"I enjoy learning and teaching as a team.",
+    s2:"// 02 — inventory",skH:"Tools I've collected",skP:"Technologies I use at my internship, at university and in my own projects. The inventory keeps growing.",
+    inv1:"▸ Languages",inv2:"▸ Frameworks & platforms",inv3:"▸ Tools & concepts",leg:"at work",c1:"OOP",c2:"Software Architecture",c3:"API Integration",
+    s3:"// 03 — level map",trH:"My journey so far",trP:"Every step was a level unlocked.",
+    done:"cleared",ongoing:"in progress",current:"★ current level",loading:"loading…",
+    f1n:"LEVEL 01 · tutorial",f1h:"Gamer since forever 🎮",f1p:"Video games sparked my curiosity: how is a game made? How does all of that work behind the screen? That was my first step into tech.",
+    f2n:"LEVEL 02 · 2022–2024",f2h:"Systems Development Technician",f2p:"<strong>ETEC Prof. Basilides de Godoy</strong>: where I really learned to code, with logic, databases, web development and team projects. This is where <strong>DevReads</strong> was born, awarded best academic project of 2024 🏆",
+    f3n:"LEVEL 03 · 2024",f3h:"Linux Technologist",f3p:"<strong>FATEC Osasco</strong>: a solid foundation in operating systems, the terminal and infrastructure. In parallel, an English side quest at Wizard, now at a fluent level.",
+    f4n:"LEVEL 04 · 2025–2028",f4h:"B.Sc. in Software Engineering",f4p:"<strong>São Judas Tadeu University</strong>: going deeper into architecture, quality and software engineering, growing from someone who codes into someone who designs solutions.",
+    f5n:"LEVEL 05 · Jul 2026 → now",f5h:"Developer Intern at Wae Tecnologia",f5p:"Made it to Wae! I build and maintain systems with GeneXus, help migrate screens to GeneXus 18, fix bugs, ship improvements and support new features and testing, always as a team and following good practices.",
+    f6n:"LEVEL 06 · ???",f6h:"Next level",f6p:"Keep growing, take on bigger challenges and deliver better and better solutions. Game on. 🎮",
+    s4:"// 04 — completed quests",prH:"Projects",prP:"Some work that shows how I think and build.",award:"🏆 AWARDED",
+    p1h:"DevReads: Digital Library",p1p:"A complete digital library system with REST APIs and a database. Chosen as the <strong>best academic project of 2024</strong>.",db:"Database",
+    p2h:"Collaborative Stories App",p2p:"A platform where people write stories together, with authorship control and editing restricted to each story's creator.",acl:"Access control",
+    p3h:"Migration to GeneXus 18",p3p:"At my internship at Wae Tecnologia: migrating screens to GeneXus 18, fixing bugs and building new features for systems in production.",tests:"Testing",
+    gh:"▸ Straight from GitHub",
+    r1:"F1 2025/2026 dashboard with a chatbot (Flask + Chart.js + Claude API) and a star-schema data warehouse: Python ETL, data quality tests and analytical SQL.",
+    r2:"REST API for hotel management, with CRUD for guests, rooms and bookings, integrated with MySQL via JPA/Hibernate.",
+    r3:"Transactions API with asynchronous processing.",
+    r4:"Landing page for NEXO Pet, an academic project on smart, automated pet feeding.",
+    r5:"Terminal-based to-do app: add, list, edit, complete and remove tasks quickly and simply.",
+    r6:"Responsive restaurant landing page.",allGh:"See everything on GitHub ↗",
+    s5:"// 05 — player 2?",ctH:"Want to team up?",ctP:"Want to talk about tech, projects or opportunities? Reach out!",copyBtn:"✉ Copy e-mail",copied:"copied!",
+    foot:"made with 💜 by Yasmim Pereira · © 2026 · GAME SAVED"
+  };
+  const WORDS = {
+    pt:["Estagiária Desenvolvedora na Wae","Estudante de Engenharia de Software","Dev GeneXus · Java · C# · Flutter","Gamer de coração 🎮"],
+    en:["Developer Intern at Wae","Software Engineering student","GeneXus · Java · C# · Flutter dev","Gamer at heart 🎮"]
+  };
+  const PT = {};
+  document.querySelectorAll('[data-i18n]').forEach(el => { PT[el.dataset.i18n] ??= el.innerHTML; });
+  let lang = 'pt';
+  function setLang(l){
+    lang = l;
+    const dict = l === 'en' ? EN : PT;
+    document.querySelectorAll('[data-i18n]').forEach(el => { const v = dict[el.dataset.i18n]; if(v) el.innerHTML = v; });
+    document.documentElement.lang = l === 'en' ? 'en' : 'pt-BR';
+    document.querySelectorAll('.lang button').forEach(b => b.classList.toggle('on', b.dataset.lang === l));
+    w = 0; c = 0; del = false;
+    try{ localStorage.setItem('lang', l); }catch(e){}
+  }
+  document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+  // efeito de digitação
+  const el = document.getElementById('typed');
+  let w = 0, c = 0, del = false;
+  (function type(){
+    const list = WORDS[lang], word = list[w % list.length];
+    el.textContent = word.slice(0, c);
+    if(!del && c < word.length){ c++; setTimeout(type, 65); }
+    else if(!del){ del = true; setTimeout(type, 1600); }
+    else if(c > 0){ c--; setTimeout(type, 30); }
+    else { del = false; w = (w + 1) % list.length; setTimeout(type, 300); }
+  })();
+  try{ const saved = localStorage.getItem('lang'); if(saved === 'en') setLang('en'); else if(!saved && !navigator.language.startsWith('pt')) setLang('en'); }catch(e){}
+
+  // revelar ao rolar
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach((r,i) => { r.style.transitionDelay = (i % 4) * 80 + 'ms'; io.observe(r); });
+
+  // brilho que segue o cursor
+  const glow = document.getElementById('glow');
+  window.addEventListener('pointermove', e => { glow.style.left = e.clientX + 'px'; glow.style.top = e.clientY + 'px'; });
+
+  // menu mobile
+  const menu = document.getElementById('menu');
+  document.getElementById('menuBtn').addEventListener('click', () => menu.classList.toggle('open'));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+
+  // copiar e-mail
+  document.getElementById('copyEmail').addEventListener('click', async () => {
+    try{
+      await navigator.clipboard.writeText(document.getElementById('email').textContent);
+      const s = document.getElementById('copied'); s.style.opacity = 1; setTimeout(() => s.style.opacity = 0, 1800);
+    }catch(e){}
+  });
+</script>
+</body>
+</html>
